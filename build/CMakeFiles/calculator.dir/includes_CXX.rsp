@@ -1,0 +1,1 @@
+-ID:/mycalc/build -ID:/mycalc/calculator -ID:/mycalc/build/calculator_autogen/include -isystem D:/Qt/6.5.1/mingw_64/include/QtCore -isystem D:/Qt/6.5.1/mingw_64/include -isystem "D:/Qt/6.5.1/mingw_64/mkspecs/win32-g++" -isystem D:/Qt/6.5.1/mingw_64/include/QtWidgets -isystem D:/Qt/6.5.1/mingw_64/include/QtGui

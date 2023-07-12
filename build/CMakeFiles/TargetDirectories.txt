@@ -1,0 +1,8 @@
+D:/mycalc/build/CMakeFiles/calculator.dir
+D:/mycalc/build/CMakeFiles/edit_cache.dir
+D:/mycalc/build/CMakeFiles/rebuild_cache.dir
+D:/mycalc/build/CMakeFiles/list_install_components.dir
+D:/mycalc/build/CMakeFiles/install.dir
+D:/mycalc/build/CMakeFiles/install/local.dir
+D:/mycalc/build/CMakeFiles/install/strip.dir
+D:/mycalc/build/CMakeFiles/calculator_autogen.dir

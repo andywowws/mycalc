@@ -20,6 +20,7 @@ protected:
     void keyPressEvent(QKeyEvent *event);
 public slots:
     bool check(std::string *s);
+    void pushnd();
     void pushb();
     void pushc();
     void pushn0();

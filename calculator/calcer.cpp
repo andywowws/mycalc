@@ -5,6 +5,8 @@ calcer::calcer(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::calcer)
 {
+    setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
+    setFixedSize(this->width(),this->height());
     ui->setupUi(this);
     ui->textEdit->setReadOnly(true);
     ui->textEdit2->setReadOnly(true);
@@ -30,6 +32,7 @@ calcer::calcer(QWidget *parent)
     connect(ui->pushr,&QPushButton::clicked,this,&calcer::pushr);
     connect(ui->pushb,&QPushButton::clicked,this,&calcer::pushb);
     connect(ui->pushc,&QPushButton::clicked,this,&calcer::pushc);
+    connect(ui->pushnd,&QPushButton::clicked,this,&calcer::pushnd);
 }
 void calcer::keyPressEvent(QKeyEvent *event){
     switch(event->key()){
@@ -129,6 +132,8 @@ void calcer::pushjia(){
     if(s=="0")s="";
     if(s.isEmpty())return;
     QChar a=s[s.length()-1];
+    if(a=='.')s.erase(s.end()-1);
+    a=s[s.length()-1];
     if(a.isDigit())
         s+='+';
     ui->textEdit->setText(s);
@@ -137,6 +142,8 @@ void calcer::pushjia(){
 void calcer::pushjian(){
     QString s=ui->textEdit->toPlainText();
     if(s=="0")s="";
+    QChar a=s[s.length()-1];
+    if(a=='.')s.erase(s.end()-1);
     /*QChar a=s[s.length()-1];
     if(a.isDigit())*/
     s+='-';
@@ -147,6 +154,8 @@ void calcer::pushcheng(){
     QString s=ui->textEdit->toPlainText();
     if(s=="0")s="";
     QChar a=s[s.length()-1];
+    if(a=='.')s.erase(s.end()-1);
+    a=s[s.length()-1];
     if(a.isDigit())
         s+='*';
     ui->textEdit->setText(s);
@@ -156,6 +165,8 @@ void calcer::pushchu(){
     QString s=ui->textEdit->toPlainText();
     if(s=="0")s="";
     QChar a=s[s.length()-1];
+    if(a=='.')s.erase(s.end()-1);
+    a=s[s.length()-1];
     if(a.isDigit())
         s+='/';
     ui->textEdit->setText(s);
@@ -180,11 +191,16 @@ bool calcer::check(std::string *s){
     cout<<a<<endl;
     return ret;
 }
+void calcer::pushnd(){
+    QString s=ui->textEdit->toPlainText();
+    QChar a=*(s.end()-1);
+    if(a.isDigit())s+='.';
+    ui->textEdit->setText(s);
+}
 void calcer::pushdy(){
     calcs a;
     std::string s=ui->textEdit->toPlainText().toStdString();
-    bool ret=1;
-    int cnt=0;
+    if(s[s.length()-1]=='.')s.erase(s.end()-1);
     for(int i=0;i<s.length();i++){
         if(s[i]=='-'){
             if(i==0)s.insert(0,1,'0');
@@ -194,7 +210,9 @@ void calcer::pushdy(){
     std::cout<<s<<std::endl;
     a.mid2last(s);
     s=a.calc();
-    ui->textEdit->setText(ui->textEdit->toPlainText()+'=');
+    QString y=ui->textEdit->toPlainText();
+    if(y[y.length()-1]=='.')y.erase(y.end()-1);
+    ui->textEdit->setText(y+'=');
     QString k=QString::fromStdString(s);
     ui->textEdit2->setText(k);
     return;

@@ -5,8 +5,9 @@ void calcs::mid2last(string a){
     stack<char>signs;
     string lastf;
     for(int i=0;i<a.length();i++){
-        if(a[i]>='0'&&a[i]<='9')lastf.push_back(a[i]);
+        if((a[i]>='0'&&a[i]<='9')||a[i]=='.')lastf.push_back(a[i]);
         else{
+            if(lastf[lastf.length()-1]=='.')lastf.pop_back();
             if(lastf!="")last.push(lastf);
             lastf="";
             if((a[i]=='+'||a[i]=='-')){
@@ -82,9 +83,16 @@ string calcs::calc(){
                 if(x=="-")res=s2-s1;
                 if(x=="*")res=s1*s2;
                 if(x=="/")res=s2/s1;
-                ostringstream oss;
-                oss<<res;
-                datas.push(oss.str());
+                string y=to_string(res);
+                char *p=&y[y.length()-1];
+                int pos=y.find('.');
+                if(pos!=string::npos){
+                    int i=y.length()-1;
+                    while(y[i]=='0'&&y[i]!='.')i--;
+                    if(y[i]!='0'&&y[i]!='.')i++;
+                    y=y.substr(0,i);
+                }
+                datas.push(y);
             }
             ls2.pop();
         }

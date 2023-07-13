@@ -20,6 +20,7 @@ set(PROJECT_SOURCES
         calcero.h
         calcer.h
         calcer.ui
+        logo.rc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

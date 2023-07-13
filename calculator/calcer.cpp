@@ -91,7 +91,11 @@ void calcer::pushe(){
     if(s=="0")s="";
     if(!s.isEmpty()){
         QChar a=s.back();
+        bool x=0;
+        if(a=='='){s.erase(s.end()-1);x=1;}
+        a=s.back();
         if(!a.isDigit())s+="2.7182818284590452353602874713527";
+        else if(x)s+='=';
     }else s="2.7182818284590452353602874713527";
     ui->textEdit->setText(s);
     return;
@@ -101,7 +105,11 @@ void calcer::pushpi(){
     if(s=="0")s="";
     if(!s.isEmpty()){
         QChar a=s.back();
+        bool x=0;
+        if(a=='='){s.erase(s.end()-1);x=1;}
+        a=s.back();
         if(!a.isDigit())s+="3.1415926535897932384626433832795";
+        else if(x)s+='=';
     }else s="3.1415926535897932384626433832795";
     ui->textEdit->setText(s);
     return;

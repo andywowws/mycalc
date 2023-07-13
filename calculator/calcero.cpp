@@ -82,7 +82,10 @@ string calcs::calc(){
                 if(x=="+")res=s1+s2;
                 if(x=="-")res=s2-s1;
                 if(x=="*")res=s1*s2;
-                if(x=="/")res=s2/s1;
+                if(x=="/"){
+                    if(s1==0)throw -1;
+                    res=s2/s1;
+                }
                 string y=to_string(res);
                 char *p=&y[y.length()-1];
                 int pos=y.find('.');
@@ -96,11 +99,13 @@ string calcs::calc(){
             }
             ls2.pop();
         }
+        if(datas.empty())throw -1;
+        return datas.top();
     }
     catch(int e){
         printf("equation not right,exit code:%d",-1);
     }
-    return datas.top();
+    return "E";
 }
 void calcs::print(){
     stack<string>ls=last;

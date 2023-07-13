@@ -37,8 +37,10 @@ calcer::calcer(QWidget *parent)
 void calcer::keyPressEvent(QKeyEvent *event){
     switch(event->key()){
         case Qt::Key_Alt:
-            ui->textEdit->setText(ui->textEdit2->toPlainText());
-            ui->textEdit2->setText("0");
+            if(ui->textEdit2->toPlainText()!="E"){
+                ui->textEdit->setText(ui->textEdit2->toPlainText());
+                ui->textEdit2->setText("0");
+            }
             break;
     }
 }
@@ -49,6 +51,7 @@ void calcer::pushb(){
     s.erase(s.end()-1);
     if(c=='(')ss=0;
     if(c==')')ss=1;
+    if(s.isEmpty())s="0";
     ui->textEdit->setText(s);
     return;
 }
@@ -130,8 +133,6 @@ void calcer::pushn9(){
 }
 void calcer::pushjia(){
     QString s=ui->textEdit->toPlainText();
-    if(s=="0")s="";
-    if(s.isEmpty())return;
     QChar a=s[s.length()-1];
     if(a=='.')s.erase(s.end()-1);
     a=s[s.length()-1];
@@ -143,8 +144,10 @@ void calcer::pushjia(){
 void calcer::pushjian(){
     QString s=ui->textEdit->toPlainText();
     if(s=="0")s="";
-    QChar a=s[s.length()-1];
-    if(a=='.')s.erase(s.end()-1);
+    else{
+        QChar a=s[s.length()-1];
+        if(a=='.')s.erase(s.end()-1);
+    }
     /*QChar a=s[s.length()-1];
     if(a.isDigit())*/
     s+='-';
@@ -153,7 +156,6 @@ void calcer::pushjian(){
 }
 void calcer::pushcheng(){
     QString s=ui->textEdit->toPlainText();
-    if(s=="0")s="";
     QChar a=s[s.length()-1];
     if(a=='.')s.erase(s.end()-1);
     a=s[s.length()-1];
@@ -164,12 +166,14 @@ void calcer::pushcheng(){
 }
 void calcer::pushchu(){
     QString s=ui->textEdit->toPlainText();
-    if(s=="0")s="";
-    QChar a=s[s.length()-1];
-    if(a=='.')s.erase(s.end()-1);
-    a=s[s.length()-1];
-    if(a.isDigit())
-        s+='/';
+    if(s=="0"){s+='/';}
+    else{
+        QChar a=s[s.length()-1];
+        if(a=='.')s.erase(s.end()-1);
+            a=s[s.length()-1];
+        if(a.isDigit())
+            s+='/';
+    }
     ui->textEdit->setText(s);
     return;
 }
@@ -212,7 +216,7 @@ void calcer::pushdy(){
     a.mid2last(s);
     s=a.calc();
     QString y=ui->textEdit->toPlainText();
-    if(y[y.length()-1]=='.')y.erase(y.end()-1);
+    if(y[y.length()-1]=='.'||y[y.length()-1]=='=')y.erase(y.end()-1);
     ui->textEdit->setText(y+'=');
     QString k=QString::fromStdString(s);
     ui->textEdit2->setText(k);

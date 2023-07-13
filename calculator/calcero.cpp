@@ -67,24 +67,30 @@ string calcs::calc(){
         ls2.push(ls1.top());
         ls1.pop();
     }
-    while(!ls2.empty()){
-        string x=ls2.top();
-        if(x.front()>='0')datas.push(x);
-        else{
-            double s1=stod(datas.top());
-            datas.pop();
-            double s2=stod(datas.top());
-            datas.pop();
-            double res;
-            if(x=="+")res=s1+s2;
-            if(x=="-")res=s2-s1;
-            if(x=="*")res=s1*s2;
-            if(x=="/")res=s2/s1;
-            ostringstream oss;
-            oss<<res;
-            datas.push(oss.str());
+    try{
+        while(!ls2.empty()){
+            string x=ls2.top();
+            if(x.front()>='0')datas.push(x);
+            else{
+                double s1=stod(datas.top());
+                datas.pop();
+                if(datas.empty())(throw -1);
+                double s2=stod(datas.top());
+                datas.pop();
+                double res;
+                if(x=="+")res=s1+s2;
+                if(x=="-")res=s2-s1;
+                if(x=="*")res=s1*s2;
+                if(x=="/")res=s2/s1;
+                ostringstream oss;
+                oss<<res;
+                datas.push(oss.str());
+            }
+            ls2.pop();
         }
-        ls2.pop();
+    }
+    catch(int e){
+        printf("equation not right,exit code:%d",-1);
     }
     return datas.top();
 }

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>457</height>
+    <width>339</width>
+    <height>531</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,8 +22,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>302</width>
-      <height>403</height>
+      <width>321</width>
+      <height>480</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -33,27 +33,6 @@
      <property name="horizontalSpacing">
       <number>0</number>
      </property>
-     <item row="4" column="2">
-      <widget class="QPushButton" name="pushn9">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>9</string>
-       </property>
-       <property name="shortcut">
-        <string>9</string>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="3">
       <widget class="QPushButton" name="pushjian">
        <property name="minimumSize">
@@ -72,6 +51,27 @@
        </property>
        <property name="shortcut">
         <string>-</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QPushButton" name="pushl">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>(</string>
+       </property>
+       <property name="shortcut">
+        <string>(</string>
        </property>
       </widget>
      </item>
@@ -96,111 +96,6 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="3">
-      <widget class="QPushButton" name="pushjia">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>+</string>
-       </property>
-       <property name="shortcut">
-        <string>+</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="pushn2">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>2</string>
-       </property>
-       <property name="shortcut">
-        <string>2</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QPushButton" name="pushn4">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>4</string>
-       </property>
-       <property name="shortcut">
-        <string>4</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="3">
-      <widget class="QPushButton" name="pushcheng">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>×</string>
-       </property>
-       <property name="shortcut">
-        <string>*</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0" colspan="4">
-      <widget class="QTextEdit" name="textEdit">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>71</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="2">
       <widget class="QPushButton" name="pushn6">
        <property name="minimumSize">
@@ -222,29 +117,29 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
-      <widget class="QPushButton" name="pushn7">
+     <item row="0" column="0" colspan="4">
+      <widget class="QTextEdit" name="textEdit">
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>60</height>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>81</height>
         </size>
        </property>
        <property name="font">
         <font>
          <pointsize>15</pointsize>
         </font>
-       </property>
-       <property name="text">
-        <string>7</string>
-       </property>
-       <property name="shortcut">
-        <string>7</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="pushn5">
+     <item row="2" column="3">
+      <widget class="QPushButton" name="pushjia">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -257,73 +152,10 @@
         </font>
        </property>
        <property name="text">
-        <string>5</string>
+        <string>+</string>
        </property>
        <property name="shortcut">
-        <string>5</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="3">
-      <widget class="QPushButton" name="pushchu">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>÷</string>
-       </property>
-       <property name="shortcut">
-        <string>/</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0" colspan="2">
-      <widget class="QPushButton" name="pushn0">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-       <property name="shortcut">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QPushButton" name="pushn8">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>8</string>
-       </property>
-       <property name="shortcut">
-        <string>8</string>
+        <string>+</string>
        </property>
       </widget>
      </item>
@@ -348,6 +180,111 @@
        </property>
       </widget>
      </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="pushn4">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>4</string>
+       </property>
+       <property name="shortcut">
+        <string>4</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0" colspan="2">
+      <widget class="QPushButton" name="pushn0">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="shortcut">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="3">
+      <widget class="QPushButton" name="pushcheng">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>×</string>
+       </property>
+       <property name="shortcut">
+        <string>*</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QPushButton" name="pushn8">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>8</string>
+       </property>
+       <property name="shortcut">
+        <string>8</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="pushn5">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>5</string>
+       </property>
+       <property name="shortcut">
+        <string>5</string>
+       </property>
+      </widget>
+     </item>
      <item row="5" column="2">
       <widget class="QPushButton" name="pushdy">
        <property name="minimumSize">
@@ -369,7 +306,91 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="2" colspan="2">
+     <item row="2" column="1">
+      <widget class="QPushButton" name="pushn2">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>2</string>
+       </property>
+       <property name="shortcut">
+        <string>2</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QPushButton" name="pushn7">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>7</string>
+       </property>
+       <property name="shortcut">
+        <string>7</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QPushButton" name="pushn9">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>9</string>
+       </property>
+       <property name="shortcut">
+        <string>9</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="3">
+      <widget class="QPushButton" name="pushchu">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>÷</string>
+       </property>
+       <property name="shortcut">
+        <string>/</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
       <widget class="QPushButton" name="pushr">
        <property name="minimumSize">
         <size>
@@ -390,8 +411,8 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="0" colspan="2">
-      <widget class="QPushButton" name="pushl">
+     <item row="7" column="2">
+      <widget class="QPushButton" name="pushb">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -404,10 +425,52 @@
         </font>
        </property>
        <property name="text">
-        <string>(</string>
+        <string>BACK</string>
        </property>
        <property name="shortcut">
-        <string>(</string>
+        <string>Backspace</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="3">
+      <widget class="QPushButton" name="pushc">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>C</string>
+       </property>
+       <property name="shortcut">
+        <string>C</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="4">
+      <widget class="QTextEdit" name="textEdit2">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>61</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
        </property>
       </widget>
      </item>
@@ -419,7 +482,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>320</width>
+     <width>339</width>
      <height>22</height>
     </rect>
    </property>

@@ -6,13 +6,17 @@ calcer::calcer(QWidget *parent)
     , ui(new Ui::calcer)
 {
     setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
-    setFixedSize(339,582);
+    setFixedSize(392,581);
     ui->setupUi(this);
     ui->textEdit->setReadOnly(true);
     ui->textEdit2->setReadOnly(true);
     ui->textEdit->setText("0");
     ui->textEdit2->setText("0");
     ss=0;
+    connect(ui->pushe,&QPushButton::clicked,this,&calcer::pushe);
+    connect(ui->pushpi,&QPushButton::clicked,this,&calcer::pushpi);
+    connect(ui->pushx2,&QPushButton::clicked,this,&calcer::pushx2);
+    connect(ui->pushxn,&QPushButton::clicked,this,&calcer::pushxn);
     connect(ui->pushn0,&QPushButton::clicked,this,&calcer::pushn0);
     connect(ui->pushn1,&QPushButton::clicked,this,&calcer::pushn1);
     connect(ui->pushn2,&QPushButton::clicked,this,&calcer::pushn2);
@@ -43,6 +47,75 @@ void calcer::keyPressEvent(QKeyEvent *event){
             }
             break;
     }
+    if(event->modifiers() == Qt::ControlModifier) { // 如果按下了CTRL键
+        if(event->key() == Qt::Key_V){
+            QClipboard *clip=QApplication::clipboard();
+            QString sa=clip->text();
+            std::string s=sa.toStdString();
+            if(s[s.length()-1]=='.')s.erase(s.end()-1);
+            int cnt=0;
+            string::iterator it;     //指向string类的迭代器。你可以理解为指针
+            for(it=s.begin();it!=s.end();it++){
+                if(!((*it>='0'&&*it<='9')||*it=='('||*it==')'||*it=='+'||*it=='-'||*it=='*'||*it=='/'||*it=='^')){
+                    s.erase(it);
+                    it--;
+                }
+            }
+            for(int i=0;i<s.length();i++){
+                if(s[i]=='('||s[i]==')')cnt++;
+            }
+            if(!isdigit(s.back())&&s.back()!='('){
+                if(s.back()=='^')s+='1';
+                else s+='0';
+            }
+            if(cnt%2!=0)s+=')';
+            sa=QString::fromStdString(s);
+            if(sa[0].isDigit()&&ui->textEdit->toPlainText()=="0")ui->textEdit->setText(sa);
+            else ui->textEdit->setText(ui->textEdit->toPlainText()+sa);
+        }
+    }
+}
+void calcer::pushxn(){
+    QString s=ui->textEdit->toPlainText();
+    if(s[s.length()-1]=='=')s.erase(s.end()-1);
+    QChar a=s[s.length()-1];
+    if(a=='.')s.erase(s.end()-1);
+    a=s[s.length()-1];
+    if(a.isDigit()||a==')')
+        s+='^';
+    ui->textEdit->setText(s);
+    return;
+}
+void calcer::pushe(){
+    QString s=ui->textEdit->toPlainText();
+    if(s=="0")s="";
+    if(!s.isEmpty()){
+        QChar a=s.back();
+        if(!a.isDigit())s+="2.7182818284590452353602874713527";
+    }else s="2.7182818284590452353602874713527";
+    ui->textEdit->setText(s);
+    return;
+}
+void calcer::pushpi(){
+    QString s=ui->textEdit->toPlainText();
+    if(s=="0")s="";
+    if(!s.isEmpty()){
+        QChar a=s.back();
+        if(!a.isDigit())s+="3.1415926535897932384626433832795";
+    }else s="3.1415926535897932384626433832795";
+    ui->textEdit->setText(s);
+    return;
+}
+void calcer::pushx2(){
+    QString s=ui->textEdit->toPlainText();
+    if(s[s.length()-1]=='=')s.erase(s.end()-1);
+    QChar a=s[s.length()-1];
+    if(a=='.')s.erase(s.end()-1);
+    a=s[s.length()-1];
+    if(a.isDigit()||a==')')
+        s+="^2";
+    ui->textEdit->setText(s);
+    return;
 }
 void calcer::pushb(){
     QString s=ui->textEdit->toPlainText();
@@ -133,6 +206,7 @@ void calcer::pushn9(){
 }
 void calcer::pushjia(){
     QString s=ui->textEdit->toPlainText();
+    if(s[s.length()-1]=='=')s.erase(s.end()-1);
     QChar a=s[s.length()-1];
     if(a=='.')s.erase(s.end()-1);
     a=s[s.length()-1];
@@ -143,6 +217,7 @@ void calcer::pushjia(){
 }
 void calcer::pushjian(){
     QString s=ui->textEdit->toPlainText();
+    if(s[s.length()-1]=='=')s.erase(s.end()-1);
     if(s=="0")s="";
     else{
         QChar a=s[s.length()-1];
@@ -150,12 +225,14 @@ void calcer::pushjian(){
     }
     /*QChar a=s[s.length()-1];
     if(a.isDigit())*/
-    s+='-';
+    QChar a=s[s.length()-1];
+    if(a.isDigit()||a=='(')s+='-';
     ui->textEdit->setText(s);
     return;
 }
 void calcer::pushcheng(){
     QString s=ui->textEdit->toPlainText();
+    if(s[s.length()-1]=='=')s.erase(s.end()-1);
     QChar a=s[s.length()-1];
     if(a=='.')s.erase(s.end()-1);
     a=s[s.length()-1];
@@ -166,6 +243,7 @@ void calcer::pushcheng(){
 }
 void calcer::pushchu(){
     QString s=ui->textEdit->toPlainText();
+    if(s[s.length()-1]=='=')s.erase(s.end()-1);
     if(s=="0"){s+='/';}
     else{
         QChar a=s[s.length()-1];
@@ -205,25 +283,34 @@ void calcer::pushnd(){
 void calcer::pushdy(){
     calcs a;
     std::string s=ui->textEdit->toPlainText().toStdString();
+    if(s[s.length()-1]=='=')s.pop_back();
     if(s[s.length()-1]=='.')s.erase(s.end()-1);
+    if(!isdigit(s.back())&&s.back()!='('){
+        if(s.back()=='^')s+='1';
+        else s+='0';
+    }
+    int cnt=0;
     for(int i=0;i<s.length();i++){
-        if(s[i]=='-'){
+        /*if(s[i]=='-'){
             if(i==0)s.insert(0,1,'0');
             else if(s[i-1]=='(')s.insert(i,1,'0');
-        }
+        }*/
+        if(s[i]=='('||s[i]==')')cnt++;
     }
+    if(cnt%2!=0)s+=')';
     std::cout<<s<<std::endl;
     a.mid2last(s);
+    QString y=QString::fromStdString(s);
+    y+='=';
     s=a.calc();
-    QString y=ui->textEdit->toPlainText();
-    if(y[y.length()-1]=='.'||y[y.length()-1]=='=')y.erase(y.end()-1);
-    ui->textEdit->setText(y+'=');
+    ui->textEdit->setText(y);
     QString k=QString::fromStdString(s);
     ui->textEdit2->setText(k);
     return;
 }
 void calcer::pushl(){
     QString s=ui->textEdit->toPlainText();
+    if(s[s.length()-1]=='=')s.erase(s.end()-1);
     if(s=="0")s="";
     if(!ss){
         s+='(';
@@ -234,6 +321,7 @@ void calcer::pushl(){
 }
 void calcer::pushr(){
     QString s=ui->textEdit->toPlainText();
+    if(s[s.length()-1]=='=')s.erase(s.end()-1);
     if(s=="0")s="";
     if(ss){
         s+=')';

@@ -5,6 +5,10 @@ void calcs::mid2last(string a){
     stack<char>signs;
     string lastf;
     for(int i=0;i<a.length();i++){
+        if(a[i]=='-'){
+            if(i==0){lastf.push_back(a[i]);i++;}
+            else if(a[i-1]=='('){lastf.push_back(a[i]);i++;}
+        }
         if((a[i]>='0'&&a[i]<='9')||a[i]=='.')lastf.push_back(a[i]);
         else{
             if(lastf[lastf.length()-1]=='.')lastf.pop_back();
@@ -29,6 +33,21 @@ void calcs::mid2last(string a){
                 while(1){
                     string s(1,a[i]);
                     if(signs.empty()||signs.top()=='(')signs.push(a[i]);
+                    else{
+                        s.pop_back();
+                        s+=signs.top();
+                        signs.pop();
+                        last.push(s);
+                        continue;
+                    }
+                    break;
+                }
+            }
+            if((a[i]=='^')){
+                while(1){
+                    string s(1,a[i]);
+                    if(signs.empty()||signs.top()=='(')signs.push(a[i]);
+                    else if((signs.top()=='+'||signs.top()=='-'))signs.push(a[i]);
                     else{
                         s.pop_back();
                         s+=signs.top();
@@ -71,12 +90,22 @@ string calcs::calc(){
     try{
         while(!ls2.empty()){
             string x=ls2.top();
-            if(x.front()>='0')datas.push(x);
+            if(x.front()>='0'&&x.front()<='9'||x.length()>1)datas.push(x);
             else{
-                double s1=stod(datas.top());
+                string s=datas.top();
+                double s1,s2;
+                stringstream ss;
+                ss<<fixed<<setprecision(100)<<s;
+                ss>>s1;
+                ss.clear();
+                ss.str("");
                 datas.pop();
                 if(datas.empty())(throw -1);
-                double s2=stod(datas.top());
+                s=datas.top();
+                ss<<fixed<<setprecision(100)<<s;
+                ss>>s2;
+                ss.clear();
+                ss.str("");
                 datas.pop();
                 double res;
                 if(x=="+")res=s1+s2;
@@ -86,8 +115,11 @@ string calcs::calc(){
                     if(s1==0)throw -1;
                     res=s2/s1;
                 }
-                string y=to_string(res);
-                char *p=&y[y.length()-1];
+                if(x=="^")res=pow(s2,s1);
+                ss<<fixed<<setprecision(100)<<res;
+                string y=ss.str();
+                ss.clear();
+                ss.str("");
                 int pos=y.find('.');
                 if(pos!=string::npos){
                     int i=y.length()-1;

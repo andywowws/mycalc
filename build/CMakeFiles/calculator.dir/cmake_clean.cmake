@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/calculator.dir/calcer.cpp.obj"
   "CMakeFiles/calculator.dir/calcer.cpp.obj.d"
+  "CMakeFiles/calculator.dir/calcero.cpp.obj"
+  "CMakeFiles/calculator.dir/calcero.cpp.obj.d"
   "CMakeFiles/calculator.dir/calculator_autogen/mocs_compilation.cpp.obj"
   "CMakeFiles/calculator.dir/calculator_autogen/mocs_compilation.cpp.obj.d"
   "CMakeFiles/calculator.dir/main.cpp.obj"

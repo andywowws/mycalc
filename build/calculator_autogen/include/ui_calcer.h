@@ -211,22 +211,73 @@ public:
     {
         calcer->setWindowTitle(QCoreApplication::translate("calcer", "\350\256\241\347\256\227\345\231\250", nullptr));
         pushn9->setText(QCoreApplication::translate("calcer", "9", nullptr));
+#if QT_CONFIG(shortcut)
+        pushn9->setShortcut(QCoreApplication::translate("calcer", "9", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushjian->setText(QCoreApplication::translate("calcer", "-", nullptr));
+#if QT_CONFIG(shortcut)
+        pushjian->setShortcut(QCoreApplication::translate("calcer", "-", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushn1->setText(QCoreApplication::translate("calcer", "1", nullptr));
+#if QT_CONFIG(shortcut)
+        pushn1->setShortcut(QCoreApplication::translate("calcer", "1", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushjia->setText(QCoreApplication::translate("calcer", "+", nullptr));
+#if QT_CONFIG(shortcut)
+        pushjia->setShortcut(QCoreApplication::translate("calcer", "+", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushn2->setText(QCoreApplication::translate("calcer", "2", nullptr));
+#if QT_CONFIG(shortcut)
+        pushn2->setShortcut(QCoreApplication::translate("calcer", "2", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushn4->setText(QCoreApplication::translate("calcer", "4", nullptr));
+#if QT_CONFIG(shortcut)
+        pushn4->setShortcut(QCoreApplication::translate("calcer", "4", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushcheng->setText(QCoreApplication::translate("calcer", "\303\227", nullptr));
+#if QT_CONFIG(shortcut)
+        pushcheng->setShortcut(QCoreApplication::translate("calcer", "*", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushn6->setText(QCoreApplication::translate("calcer", "6", nullptr));
+#if QT_CONFIG(shortcut)
+        pushn6->setShortcut(QCoreApplication::translate("calcer", "6", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushn7->setText(QCoreApplication::translate("calcer", "7", nullptr));
+#if QT_CONFIG(shortcut)
+        pushn7->setShortcut(QCoreApplication::translate("calcer", "7", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushn5->setText(QCoreApplication::translate("calcer", "5", nullptr));
+#if QT_CONFIG(shortcut)
+        pushn5->setShortcut(QCoreApplication::translate("calcer", "5", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushchu->setText(QCoreApplication::translate("calcer", "\303\267", nullptr));
+#if QT_CONFIG(shortcut)
+        pushchu->setShortcut(QCoreApplication::translate("calcer", "/", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushn0->setText(QCoreApplication::translate("calcer", "0", nullptr));
+#if QT_CONFIG(shortcut)
+        pushn0->setShortcut(QCoreApplication::translate("calcer", "0", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushn8->setText(QCoreApplication::translate("calcer", "8", nullptr));
+#if QT_CONFIG(shortcut)
+        pushn8->setShortcut(QCoreApplication::translate("calcer", "8", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushn3->setText(QCoreApplication::translate("calcer", "3", nullptr));
+#if QT_CONFIG(shortcut)
+        pushn3->setShortcut(QCoreApplication::translate("calcer", "3", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushdy->setText(QCoreApplication::translate("calcer", "=", nullptr));
+#if QT_CONFIG(shortcut)
+        pushdy->setShortcut(QCoreApplication::translate("calcer", "Return", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushr->setText(QCoreApplication::translate("calcer", ")", nullptr));
+#if QT_CONFIG(shortcut)
+        pushr->setShortcut(QCoreApplication::translate("calcer", ")", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushl->setText(QCoreApplication::translate("calcer", "(", nullptr));
+#if QT_CONFIG(shortcut)
+        pushl->setShortcut(QCoreApplication::translate("calcer", "(", nullptr));
+#endif // QT_CONFIG(shortcut)
     } // retranslateUi
 
 };

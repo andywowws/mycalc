@@ -2,7 +2,7 @@
 #define CALCER_H
 
 #include <QMainWindow>
-
+#include <QKeyEvent>
 QT_BEGIN_NAMESPACE
 namespace Ui { class calcer; }
 QT_END_NAMESPACE
@@ -14,7 +14,9 @@ class calcer : public QMainWindow
 public:
     calcer(QWidget *parent = nullptr);
     ~calcer();
-    QString str;
+    bool ss;
+protected:
+    void keyPressEvent(QKeyEvent *event);
 public slots:
     void pushn0();
     void pushn1();

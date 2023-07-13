@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/mycalc/calculator/calcer.cpp" "CMakeFiles/calculator.dir/calcer.cpp.obj" "gcc" "CMakeFiles/calculator.dir/calcer.cpp.obj.d"
+  "D:/mycalc/calculator/calcero.cpp" "CMakeFiles/calculator.dir/calcero.cpp.obj" "gcc" "CMakeFiles/calculator.dir/calcero.cpp.obj.d"
   "D:/mycalc/build/calculator_autogen/mocs_compilation.cpp" "CMakeFiles/calculator.dir/calculator_autogen/mocs_compilation.cpp.obj" "gcc" "CMakeFiles/calculator.dir/calculator_autogen/mocs_compilation.cpp.obj.d"
   "D:/mycalc/calculator/main.cpp" "CMakeFiles/calculator.dir/main.cpp.obj" "gcc" "CMakeFiles/calculator.dir/main.cpp.obj.d"
   )

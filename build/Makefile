@@ -210,6 +210,30 @@ calcer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\calculator.dir\build.make CMakeFiles/calculator.dir/calcer.cpp.s
 .PHONY : calcer.cpp.s
 
+calcero.obj: calcero.cpp.obj
+.PHONY : calcero.obj
+
+# target to build an object file
+calcero.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\calculator.dir\build.make CMakeFiles/calculator.dir/calcero.cpp.obj
+.PHONY : calcero.cpp.obj
+
+calcero.i: calcero.cpp.i
+.PHONY : calcero.i
+
+# target to preprocess a source file
+calcero.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\calculator.dir\build.make CMakeFiles/calculator.dir/calcero.cpp.i
+.PHONY : calcero.cpp.i
+
+calcero.s: calcero.cpp.s
+.PHONY : calcero.s
+
+# target to generate assembly for a file
+calcero.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\calculator.dir\build.make CMakeFiles/calculator.dir/calcero.cpp.s
+.PHONY : calcero.cpp.s
+
 calculator_autogen/mocs_compilation.obj: calculator_autogen/mocs_compilation.cpp.obj
 .PHONY : calculator_autogen/mocs_compilation.obj
 
@@ -275,6 +299,9 @@ help:
 	@echo ... calcer.obj
 	@echo ... calcer.i
 	@echo ... calcer.s
+	@echo ... calcero.obj
+	@echo ... calcero.i
+	@echo ... calcero.s
 	@echo ... calculator_autogen/mocs_compilation.obj
 	@echo ... calculator_autogen/mocs_compilation.i
 	@echo ... calculator_autogen/mocs_compilation.s

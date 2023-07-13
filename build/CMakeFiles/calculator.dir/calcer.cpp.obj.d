@@ -350,15 +350,37 @@ CMakeFiles/calculator.dir/calcer.cpp.obj: D:\mycalc\calculator\calcer.cpp \
  D:/Qt/6.5.1/mingw_64/include/QtGui/qcursor.h \
  D:/Qt/6.5.1/mingw_64/include/QtGui/qbitmap.h \
  D:/Qt/6.5.1/mingw_64/include/QtWidgets/qtabwidget.h \
+ D:/Qt/6.5.1/mingw_64/include/QtGui/QKeyEvent \
+ D:/Qt/6.5.1/mingw_64/include/QtGui/qevent.h \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/qcoreevent.h \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/qiodevice.h \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/qpointer.h \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/qurl.h \
+ D:/Qt/6.5.1/mingw_64/include/QtGui/qeventpoint.h \
+ D:/Qt/6.5.1/mingw_64/include/QtGui/qvector2d.h \
+ D:/Qt/6.5.1/mingw_64/include/QtGui/qvectornd.h \
+ D:/Qt/6.5.1/mingw_64/include/QtGui/qpointingdevice.h \
+ D:/Qt/6.5.1/mingw_64/include/QtGui/qinputdevice.h \
+ D:/Qt/6.5.1/mingw_64/include/QtGui/qscreen.h \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/QList \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/qlist.h \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/QObject \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/qobject.h \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/QRect \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/qrect.h \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/QSize \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/qsize.h \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/QSizeF \
+ D:/Qt/6.5.1/mingw_64/include/QtGui/QTransform \
+ D:/Qt/6.5.1/mingw_64/include/QtGui/qtransform.h \
+ D:/Qt/6.5.1/mingw_64/include/QtCore/qnativeinterface.h \
  D:/mycalc/build/calculator_autogen/include/ui_calcer.h \
  D:/Qt/6.5.1/mingw_64/include/QtCore/QVariant \
  D:/Qt/6.5.1/mingw_64/include/QtCore/qvariant.h \
  D:/Qt/6.5.1/mingw_64/include/QtWidgets/QApplication \
  D:/Qt/6.5.1/mingw_64/include/QtWidgets/qapplication.h \
  D:/Qt/6.5.1/mingw_64/include/QtCore/qcoreapplication.h \
- D:/Qt/6.5.1/mingw_64/include/QtCore/qcoreevent.h \
  D:/Qt/6.5.1/mingw_64/include/QtCore/qeventloop.h \
- D:/Qt/6.5.1/mingw_64/include/QtCore/qnativeinterface.h \
  D:/Qt/6.5.1/mingw_64/include/QtCore/qcoreapplication_platform.h \
  D:/Qt/6.5.1/mingw_64/include/QtGui/qguiapplication.h \
  D:/Qt/6.5.1/mingw_64/include/QtGui/qinputmethod.h \
@@ -384,10 +406,31 @@ CMakeFiles/calculator.dir/calcer.cpp.obj: D:\mycalc\calculator\calcer.cpp \
  D:/Qt/6.5.1/mingw_64/include/QtWidgets/qabstractscrollarea.h \
  D:/Qt/6.5.1/mingw_64/include/QtWidgets/qframe.h \
  D:/Qt/6.5.1/mingw_64/include/QtGui/qtextdocument.h \
- D:/Qt/6.5.1/mingw_64/include/QtCore/qurl.h \
  D:/Qt/6.5.1/mingw_64/include/QtGui/qtextoption.h \
  D:/Qt/6.5.1/mingw_64/include/QtGui/qtextcursor.h \
  D:/Qt/6.5.1/mingw_64/include/QtGui/qtextformat.h \
  D:/Qt/6.5.1/mingw_64/include/QtGui/qpen.h \
  D:/Qt/6.5.1/mingw_64/include/QtWidgets/QWidget \
- D:/Qt/6.5.1/mingw_64/include/QtWidgets/qwidget.h
+ D:/Qt/6.5.1/mingw_64/include/QtWidgets/qwidget.h \
+ D:\mycalc\calculator\calcero.h \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ostream \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ios \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_ios.h \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.h \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cwctype \
+ D:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.tcc \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_ios.tcc \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ostream.tcc \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/istream \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/stack \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/deque \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_deque.h \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/deque.tcc \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_stack.h \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/queue \
+ D:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_queue.h

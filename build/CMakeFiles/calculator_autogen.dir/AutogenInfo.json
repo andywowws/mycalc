@@ -258,6 +258,12 @@
 			"MU",
 			"EWIEGA46WW/moc_calcer.cpp",
 			null
+		],
+		[
+			"D:/mycalc/calculator/calcero.h",
+			"MU",
+			"EWIEGA46WW/moc_calcero.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -332,6 +338,7 @@
 	"SOURCES" : 
 	[
 		[ "D:/mycalc/calculator/calcer.cpp", "MU", null ],
+		[ "D:/mycalc/calculator/calcero.cpp", "MU", null ],
 		[ "D:/mycalc/calculator/main.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

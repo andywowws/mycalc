@@ -1,2 +1,4 @@
-/.vscode
-/build-calculator-Desktop_Qt_6_5_1_MinGW_64_bit-Debug
+.vscode
+build-calculator-Desktop_Qt_6_5_1_MinGW_64_bit-Debug
+build
+calculator/calcer_ui.py

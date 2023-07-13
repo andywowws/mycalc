@@ -6,7 +6,7 @@ calcer::calcer(QWidget *parent)
     , ui(new Ui::calcer)
 {
     setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
-    setFixedSize(this->width(),this->height());
+    setFixedSize(339,582);
     ui->setupUi(this);
     ui->textEdit->setReadOnly(true);
     ui->textEdit2->setReadOnly(true);
@@ -44,6 +44,7 @@ void calcer::keyPressEvent(QKeyEvent *event){
 }
 void calcer::pushb(){
     QString s=ui->textEdit->toPlainText();
+    if(s=="0")return;
     QChar c=*(s.end()-1);
     s.erase(s.end()-1);
     if(c=='(')ss=0;

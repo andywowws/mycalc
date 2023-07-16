@@ -128,7 +128,7 @@ string calcs::calc(){
                 if(x=="/"){
                     if(s1==0)throw -1;
                     res=s2/s1;
-                    wr=100;
+                    wr=s1+s2+1;
                 }
                 if(x=="^")res=pow(s2,s1);
                 ss<<fixed<<setprecision(wr)<<res;

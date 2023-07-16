@@ -94,7 +94,12 @@ string calcs::calc(){
             else{
                 string s=datas.top();
                 double s1,s2;
+                int w1,w2,wr,pos;
                 stringstream ss;
+                pos=s.find('.');
+                if(pos!=string::npos)
+                    w1=s.length()-1-pos;
+                else w1=0;
                 ss<<fixed<<setprecision(100)<<s;
                 ss>>s1;
                 ss.clear();
@@ -102,26 +107,36 @@ string calcs::calc(){
                 datas.pop();
                 if(datas.empty())(throw -1);
                 s=datas.top();
+                if(pos!=string::npos)
+                    w2=s.length()-1-pos;
+                else w2=0;
                 ss<<fixed<<setprecision(100)<<s;
                 ss>>s2;
                 ss.clear();
                 ss.str("");
                 datas.pop();
                 double res;
-                if(x=="+")res=s1+s2;
-                if(x=="-")res=s2-s1;
-                if(x=="*")res=s1*s2;
+                if(x=="+"){
+                    res=s1+s2;
+                    wr=max(w1,w2);}
+                if(x=="-"){
+                    res=s2-s1;
+                    wr=max(w1,w2);}
+                if(x=="*"){
+                    res=s1*s2;
+                    wr=w1+w2;}
                 if(x=="/"){
                     if(s1==0)throw -1;
                     res=s2/s1;
+                    wr=100;
                 }
                 if(x=="^")res=pow(s2,s1);
-                ss<<fixed<<setprecision(100)<<res;
+                ss<<fixed<<setprecision(wr)<<res;
                 string y=ss.str();
                 ss.clear();
                 ss.str("");
-                int pos=y.find('.');
-                if(pos!=string::npos){
+                int pos2=y.find('.');
+                if(pos2!=string::npos){
                     int i=y.length()-1;
                     while(y[i]=='0'&&y[i]!='.')i--;
                     if(y[i]!='0'&&y[i]!='.')i++;

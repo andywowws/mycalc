@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <string>
 #include <QClipboard>
+#include <QMessageBox>
 QT_BEGIN_NAMESPACE
 namespace Ui { class calcer; }
 QT_END_NAMESPACE
@@ -20,7 +21,6 @@ public:
 protected:
     void keyPressEvent(QKeyEvent *event);
 public slots:
-    bool check(std::string *s);
     void pushe();
     void pushpi();
     void pushnd();

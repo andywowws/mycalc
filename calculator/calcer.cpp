@@ -52,26 +52,20 @@ void calcer::keyPressEvent(QKeyEvent *event){
             QClipboard *clip=QApplication::clipboard();
             QString sa=clip->text();
             std::string s=sa.toStdString();
-            if(s[s.length()-1]=='.')s.erase(s.end()-1);
-            int cnt=0;
-            string::iterator it;     //指向string类的迭代器。你可以理解为指针
-            for(it=s.begin();it!=s.end();it++){
-                if(!((*it>='0'&&*it<='9')||*it=='('||*it==')'||*it=='+'||*it=='-'||*it=='*'||*it=='/'||*it=='^')){
-                    s.erase(it);
-                    it--;
-                }
-            }
+            bool w=1;
+            int k1=0,k2=0;
             for(int i=0;i<s.length();i++){
-                if(s[i]=='('||s[i]==')')cnt++;
+                if(s[i]=='(')k1++;
+                if(s[i]==')'){
+                    if(k1==0){w=0;break;}
+                    k2++;
+                }
+                if(!(s[i]=='+'||s[i]=='-'||s[i]=='*'||s[i]=='/'||s[i]=='^'||s[i]=='('||s[i]==')'||s[i]=='.'||isdigit(s[i]))){w=0;break;}
             }
-            if(!isdigit(s.back())&&s.back()!='('){
-                if(s.back()=='^')s+='1';
-                else s+='0';
-            }
-            if(cnt%2!=0)s+=')';
-            sa=QString::fromStdString(s);
-            if(sa[0].isDigit()&&ui->textEdit->toPlainText()=="0")ui->textEdit->setText(sa);
-            else ui->textEdit->setText(ui->textEdit->toPlainText()+sa);
+            calcs an;
+            if(k1!=k2&&w)s=an.rmbrt(s);
+            if(!w)QMessageBox::warning(this, "错误","无效输入");
+            if(w)ui->textEdit->setText(QString::fromStdString(s));
         }
     }
 }
@@ -94,7 +88,7 @@ void calcer::pushe(){
         bool x=0;
         if(a=='='){s.erase(s.end()-1);x=1;}
         a=s.back();
-        if(!a.isDigit())s+="2.7182818284590452353602874713527";
+        if(!(a.isDigit()||a=='.'))s+="2.7182818284590452353602874713527";
         else if(x)s+='=';
     }else s="2.7182818284590452353602874713527";
     ui->textEdit->setText(s);
@@ -108,7 +102,7 @@ void calcer::pushpi(){
         bool x=0;
         if(a=='='){s.erase(s.end()-1);x=1;}
         a=s.back();
-        if(!a.isDigit())s+="3.1415926535897932384626433832795";
+        if(!(a.isDigit()||a=='.'))s+="3.1415926535897932384626433832795";
         else if(x)s+='=';
     }else s="3.1415926535897932384626433832795";
     ui->textEdit->setText(s);
@@ -226,7 +220,7 @@ void calcer::pushjia(){
 void calcer::pushjian(){
     QString s=ui->textEdit->toPlainText();
     if(s[s.length()-1]=='=')s.erase(s.end()-1);
-    if(s=="0")s="";
+    if(s=="0"){ui->textEdit->setText("-");return;}
     else{
         QChar a=s[s.length()-1];
         if(a=='.')s.erase(s.end()-1);
@@ -263,29 +257,16 @@ void calcer::pushchu(){
     ui->textEdit->setText(s);
     return;
 }
-bool calcer::check(std::string *s){
-    using namespace std;
-    string a=*s;
-    bool ret=1;
-    int cnt=0;
-    for(int i=0;i<a.length();i++){
-        if(a[i]=='-'){
-            if(i==0)a.insert(1,1,'0');
-            else if(a[i-1]=='(')a.insert(i,1,'0');
-        }
-        if(a[i]=='('||a[i]==')')cnt++;
-        if(i==a.length()-1)
-            if(!isdigit(a[i]))ret=0;
-    }
-    if(cnt%2==1)ret=0;
-    *s=a;
-    cout<<a<<endl;
-    return ret;
-}
 void calcer::pushnd(){
     QString s=ui->textEdit->toPlainText();
+    if(s[s.length()-1]=='=')s.erase(s.end()-1);
     QChar a=*(s.end()-1);
-    if(a.isDigit())s+='.';
+    bool able=1;
+    for(int i=s.length()-1;i>=0;i--){
+        if(!(s[i].isDigit()||s[i]=='.'))break;
+        if(s[i]=='.'){able=0;break;}
+    }
+    if(a.isDigit()&&able)s+='.';
     ui->textEdit->setText(s);
 }
 void calcer::pushdy(){
@@ -295,10 +276,16 @@ void calcer::pushdy(){
     if(s[s.length()-1]=='.')s.erase(s.end()-1);
     if(!isdigit(s.back())&&s.back()!='('){
         if(s.back()=='^')s+='1';
-        else s+='0';
+        else if(s.back()!=')')s+='0';
     }
-    int cnt=0;
+    int cnt=0,cnt2=0;
+    bool stt=1;
     for(int i=0;i<s.length();i++){
+        if(!isdigit(s[i])&&s[i]!='.')stt=0;
+        if(stt&&s[i]=='.'){
+            cnt2++;
+            if(cnt2>1){s.erase(i,1);cnt2--;}
+        }
         /*if(s[i]=='-'){
             if(i==0)s.insert(0,1,'0');
             else if(s[i-1]=='(')s.insert(i,1,'0');

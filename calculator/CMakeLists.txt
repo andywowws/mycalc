@@ -19,6 +19,8 @@ set(PROJECT_SOURCES
         calcero.cpp
         calcero.h
         calcer.h
+        calcbase.h
+        calcbase.cpp
         calcer.ui
         logo.rc
 )

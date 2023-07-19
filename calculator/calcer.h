@@ -7,20 +7,22 @@
 #include <QClipboard>
 #include <QMessageBox>
 QT_BEGIN_NAMESPACE
-namespace Ui { class calcer; }
+namespace Ui {
+class calcer;
+}
 QT_END_NAMESPACE
 
-class calcer : public QMainWindow
-{
+class calcer : public QMainWindow {
     Q_OBJECT
 
-public:
+   public:
     calcer(QWidget *parent = nullptr);
     ~calcer();
     bool ss;
-protected:
+
+   protected:
     void keyPressEvent(QKeyEvent *event);
-public slots:
+   public slots:
     void pushe();
     void pushpi();
     void pushnd();
@@ -45,8 +47,8 @@ public slots:
     void pushdy();
     void pushl();
     void pushr();
-    //double calc();
-private:
+    // double calc();
+   private:
     Ui::calcer *ui;
 };
-#endif // CALCER_H
+#endif  // CALCER_H

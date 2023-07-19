@@ -10,20 +10,18 @@
 #include <sstream>
 #define ll long long
 using namespace std;
-class kh
-{
-public:
+class kh {
+   public:
     char c;
     int pos;
 };
-class calcs
-{
-public:
+class calcs {
+   public:
     void mid2last(string a);
     string calc();
     void print();
     string rmbrt(string a);
 
-private:
+   private:
     stack<string> last;
 };

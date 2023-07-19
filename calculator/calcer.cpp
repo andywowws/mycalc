@@ -1,9 +1,8 @@
 #include "calcer.h"
+
 #include "./ui_calcer.h"
 #include "calcero.h"
-calcer::calcer(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::calcer)
-{
+calcer::calcer(QWidget *parent) : QMainWindow(parent), ui(new Ui::calcer) {
     setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     setFixedSize(392, 581);
     ui->setupUi(this);
@@ -37,81 +36,62 @@ calcer::calcer(QWidget *parent)
     connect(ui->pushc, &QPushButton::clicked, this, &calcer::pushc);
     connect(ui->pushnd, &QPushButton::clicked, this, &calcer::pushnd);
 }
-void calcer::keyPressEvent(QKeyEvent *event)
-{
-    switch (event->key())
-    {
-    case Qt::Key_Alt:
-        if (ui->textEdit2->toPlainText() != "E")
-        {
-            ui->textEdit->setText(ui->textEdit2->toPlainText());
-            ui->textEdit2->setText("0");
-        }
-        break;
+void calcer::keyPressEvent(QKeyEvent *event) {
+    switch (event->key()) {
+        case Qt::Key_Alt:
+            if (ui->textEdit2->toPlainText() != "E") {
+                ui->textEdit->setText(ui->textEdit2->toPlainText());
+                ui->textEdit2->setText("0");
+            }
+            break;
     }
-    if (event->modifiers() == Qt::ControlModifier)
-    { // 如果按下了CTRL键
-        if (event->key() == Qt::Key_V)
-        {
+    if (event->modifiers() == Qt::ControlModifier) {  // 如果按下了CTRL键
+        if (event->key() == Qt::Key_V) {
             QClipboard *clip = QApplication::clipboard();
             QString sa = clip->text();
             std::string s = sa.toStdString();
             bool w = 1;
             int k1 = 0, k2 = 0;
-            for (int i = 0; i < s.length(); i++)
-            {
-                if (s[i] == '(')
-                    k1++;
-                if (s[i] == ')')
-                {
-                    if (k1 == 0)
-                    {
+            for (int i = 0; i < s.length(); i++) {
+                if (s[i] == '(') k1++;
+                if (s[i] == ')') {
+                    if (k1 == 0) {
                         w = 0;
                         break;
                     }
                     k2++;
                 }
-                if (!(s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/' || s[i] == '^' || s[i] == '(' || s[i] == ')' || s[i] == '.' || isdigit(s[i])))
-                {
+                if (!(s[i] == '+' || s[i] == '-' || s[i] == '*' ||
+                      s[i] == '/' || s[i] == '^' || s[i] == '(' ||
+                      s[i] == ')' || s[i] == '.' || isdigit(s[i]))) {
                     w = 0;
                     break;
                 }
             }
             calcs an;
-            if (k1 != k2 && w)
-                s = an.rmbrt(s);
-            if (!w)
-                QMessageBox::warning(this, "错误", "无效输入");
-            if (w)
-                ui->textEdit->setText(QString::fromStdString(s));
+            if (k1 != k2 && w) s = an.rmbrt(s);
+            if (!w) QMessageBox::warning(this, "错误", "无效输入");
+            if (w) ui->textEdit->setText(QString::fromStdString(s));
         }
     }
 }
-void calcer::pushxn()
-{
+void calcer::pushxn() {
     QString s = ui->textEdit->toPlainText();
-    if (s[s.length() - 1] == '=')
-        s.erase(s.end() - 1);
+    if (s[s.length() - 1] == '=') s.erase(s.end() - 1);
     QChar a = s[s.length() - 1];
-    if (a == '.')
-        s.erase(s.end() - 1);
+    if (a == '.') s.erase(s.end() - 1);
     a = s[s.length() - 1];
-    if (a.isDigit() || a == ')')
-        s += '^';
+    if (a.isDigit() || a == ')') s += '^';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushe()
-{
+void calcer::pushe() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
-    if (!s.isEmpty())
-    {
+    if (s == "0") s = "";
+    if (!s.isEmpty()) {
         QChar a = s.back();
         bool x = 0;
-        if (a == '=')
-        {
+        if (a == '=') {
             s.erase(s.end() - 1);
             x = 1;
         }
@@ -120,23 +100,18 @@ void calcer::pushe()
             s += "2.7182818284590452353602874713527";
         else if (x)
             s += '=';
-    }
-    else
+    } else
         s = "2.7182818284590452353602874713527";
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushpi()
-{
+void calcer::pushpi() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
-    if (!s.isEmpty())
-    {
+    if (s == "0") s = "";
+    if (!s.isEmpty()) {
         QChar a = s.back();
         bool x = 0;
-        if (a == '=')
-        {
+        if (a == '=') {
             s.erase(s.end() - 1);
             x = 1;
         }
@@ -145,243 +120,180 @@ void calcer::pushpi()
             s += "3.1415926535897932384626433832795";
         else if (x)
             s += '=';
-    }
-    else
+    } else
         s = "3.1415926535897932384626433832795";
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushx2()
-{
+void calcer::pushx2() {
     QString s = ui->textEdit->toPlainText();
-    if (s[s.length() - 1] == '=')
-        s.erase(s.end() - 1);
+    if (s[s.length() - 1] == '=') s.erase(s.end() - 1);
     QChar a = s[s.length() - 1];
-    if (a == '.')
-        s.erase(s.end() - 1);
+    if (a == '.') s.erase(s.end() - 1);
     a = s[s.length() - 1];
-    if (a.isDigit() || a == ')')
-        s += "^2";
+    if (a.isDigit() || a == ')') s += "^2";
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushb()
-{
+void calcer::pushb() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        return;
+    if (s == "0") return;
     QChar c = *(s.end() - 1);
     s.erase(s.end() - 1);
-    if (c == '(')
-        ss = 0;
-    if (c == ')')
-        ss = 1;
-    if (s.isEmpty())
-        s = "0";
+    if (c == '(') ss = 0;
+    if (c == ')') ss = 1;
+    if (s.isEmpty()) s = "0";
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushc()
-{
+void calcer::pushc() {
     ui->textEdit->setText("0");
     ui->textEdit2->setText("0");
     ss = 0;
     return;
 }
-void calcer::pushn0()
-{
+void calcer::pushn0() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
+    if (s == "0") s = "";
     s += '0';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushn1()
-{
+void calcer::pushn1() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
+    if (s == "0") s = "";
     s += '1';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushn2()
-{
+void calcer::pushn2() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
+    if (s == "0") s = "";
     s += '2';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushn3()
-{
+void calcer::pushn3() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
+    if (s == "0") s = "";
     s += '3';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushn4()
-{
+void calcer::pushn4() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
+    if (s == "0") s = "";
     s += '4';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushn5()
-{
+void calcer::pushn5() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
+    if (s == "0") s = "";
     s += '5';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushn6()
-{
+void calcer::pushn6() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
+    if (s == "0") s = "";
     s += '6';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushn7()
-{
+void calcer::pushn7() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
+    if (s == "0") s = "";
     s += '7';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushn8()
-{
+void calcer::pushn8() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
+    if (s == "0") s = "";
     s += '8';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushn9()
-{
+void calcer::pushn9() {
     QString s = ui->textEdit->toPlainText();
-    if (s == "0")
-        s = "";
+    if (s == "0") s = "";
     s += '9';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushjia()
-{
+void calcer::pushjia() {
     QString s = ui->textEdit->toPlainText();
-    if (s[s.length() - 1] == '=')
-        s.erase(s.end() - 1);
+    if (s[s.length() - 1] == '=') s.erase(s.end() - 1);
     QChar a = s[s.length() - 1];
-    if (a == '.')
-        s.erase(s.end() - 1);
+    if (a == '.') s.erase(s.end() - 1);
     a = s[s.length() - 1];
-    if (a.isDigit())
-        s += '+';
+    if (a.isDigit()) s += '+';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushjian()
-{
+void calcer::pushjian() {
     QString s = ui->textEdit->toPlainText();
-    if (s[s.length() - 1] == '=')
-        s.erase(s.end() - 1);
-    if (s == "0")
-    {
+    if (s[s.length() - 1] == '=') s.erase(s.end() - 1);
+    if (s == "0") {
         ui->textEdit->setText("-");
         return;
-    }
-    else
-    {
+    } else {
         QChar a = s[s.length() - 1];
-        if (a == '.')
-            s.erase(s.end() - 1);
+        if (a == '.') s.erase(s.end() - 1);
     }
     /*QChar a=s[s.length()-1];
     if(a.isDigit())*/
     QChar a = s[s.length() - 1];
-    if (a.isDigit() || a == '(')
-        s += '-';
+    if (a.isDigit() || a == '(') s += '-';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushcheng()
-{
+void calcer::pushcheng() {
     QString s = ui->textEdit->toPlainText();
-    if (s[s.length() - 1] == '=')
-        s.erase(s.end() - 1);
+    if (s[s.length() - 1] == '=') s.erase(s.end() - 1);
     QChar a = s[s.length() - 1];
-    if (a == '.')
-        s.erase(s.end() - 1);
+    if (a == '.') s.erase(s.end() - 1);
     a = s[s.length() - 1];
-    if (a.isDigit())
-        s += '*';
+    if (a.isDigit()) s += '*';
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushchu()
-{
+void calcer::pushchu() {
     QString s = ui->textEdit->toPlainText();
-    if (s[s.length() - 1] == '=')
-        s.erase(s.end() - 1);
-    if (s == "0")
-    {
+    if (s[s.length() - 1] == '=') s.erase(s.end() - 1);
+    if (s == "0") {
         s += '/';
-    }
-    else
-    {
+    } else {
         QChar a = s[s.length() - 1];
-        if (a == '.')
-            s.erase(s.end() - 1);
+        if (a == '.') s.erase(s.end() - 1);
         a = s[s.length() - 1];
-        if (a.isDigit())
-            s += '/';
+        if (a.isDigit()) s += '/';
     }
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushnd()
-{
+void calcer::pushnd() {
     QString s = ui->textEdit->toPlainText();
-    if (s[s.length() - 1] == '=')
-        s.erase(s.end() - 1);
+    if (s[s.length() - 1] == '=') s.erase(s.end() - 1);
     QChar a = *(s.end() - 1);
     bool able = 1;
-    for (int i = s.length() - 1; i >= 0; i--)
-    {
-        if (!(s[i].isDigit() || s[i] == '.'))
-            break;
-        if (s[i] == '.')
-        {
+    for (int i = s.length() - 1; i >= 0; i--) {
+        if (!(s[i].isDigit() || s[i] == '.')) break;
+        if (s[i] == '.') {
             able = 0;
             break;
         }
     }
-    if (a.isDigit() && able)
-        s += '.';
+    if (a.isDigit() && able) s += '.';
     ui->textEdit->setText(s);
 }
-void calcer::pushdy()
-{
+void calcer::pushdy() {
     calcs a;
     std::string s = ui->textEdit->toPlainText().toStdString();
-    if (s[s.length() - 1] == '=')
-        s.pop_back();
-    if (s[s.length() - 1] == '.')
-        s.erase(s.end() - 1);
-    if (!isdigit(s.back()) && s.back() != '(')
-    {
+    if (s[s.length() - 1] == '=') s.pop_back();
+    if (s[s.length() - 1] == '.') s.erase(s.end() - 1);
+    if (!isdigit(s.back()) && s.back() != '(') {
         if (s.back() == '^')
             s += '1';
         else if (s.back() != ')')
@@ -389,15 +301,11 @@ void calcer::pushdy()
     }
     int cnt = 0, cnt2 = 0;
     bool stt = 1;
-    for (int i = 0; i < s.length(); i++)
-    {
-        if (!isdigit(s[i]) && s[i] != '.')
-            stt = 0;
-        if (stt && s[i] == '.')
-        {
+    for (int i = 0; i < s.length(); i++) {
+        if (!isdigit(s[i]) && s[i] != '.') stt = 0;
+        if (stt && s[i] == '.') {
             cnt2++;
-            if (cnt2 > 1)
-            {
+            if (cnt2 > 1) {
                 s.erase(i, 1);
                 cnt2--;
             }
@@ -406,11 +314,9 @@ void calcer::pushdy()
             if(i==0)s.insert(0,1,'0');
             else if(s[i-1]=='(')s.insert(i,1,'0');
         }*/
-        if (s[i] == '(' || s[i] == ')')
-            cnt++;
+        if (s[i] == '(' || s[i] == ')') cnt++;
     }
-    if (cnt % 2 != 0)
-        s += ')';
+    if (cnt % 2 != 0) s += ')';
     std::cout << s << std::endl;
     a.mid2last(s);
     QString y = QString::fromStdString(s);
@@ -421,37 +327,26 @@ void calcer::pushdy()
     ui->textEdit2->setText(k);
     return;
 }
-void calcer::pushl()
-{
+void calcer::pushl() {
     QString s = ui->textEdit->toPlainText();
-    if (s[s.length() - 1] == '=')
-        s.erase(s.end() - 1);
-    if (s == "0")
-        s = "";
-    if (!ss)
-    {
+    if (s[s.length() - 1] == '=') s.erase(s.end() - 1);
+    if (s == "0") s = "";
+    if (!ss) {
         s += '(';
         ss = 1;
     }
     ui->textEdit->setText(s);
     return;
 }
-void calcer::pushr()
-{
+void calcer::pushr() {
     QString s = ui->textEdit->toPlainText();
-    if (s[s.length() - 1] == '=')
-        s.erase(s.end() - 1);
-    if (s == "0")
-        s = "";
-    if (ss)
-    {
+    if (s[s.length() - 1] == '=') s.erase(s.end() - 1);
+    if (s == "0") s = "";
+    if (ss) {
         s += ')';
         ss = 0;
     }
     ui->textEdit->setText(s);
     return;
 }
-calcer::~calcer()
-{
-    delete ui;
-}
+calcer::~calcer() { delete ui; }

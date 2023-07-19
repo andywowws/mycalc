@@ -1,46 +1,35 @@
 #include "calcero.h"
+
 #include "calcbase.h"
 #define ll long long
 using namespace std;
-void calcs::mid2last(string a)
-{
+void calcs::mid2last(string a) {
     stack<char> signs;
     string lastf;
-    for (int i = 0; i < a.length(); i++)
-    {
-        if (a[i] == '-')
-        {
-            if (i == 0)
-            {
+    for (int i = 0; i < a.length(); i++) {
+        if (a[i] == '-') {
+            if (i == 0) {
                 lastf.push_back(a[i]);
                 i++;
-            }
-            else if (a[i - 1] == '(')
-            {
+            } else if (a[i - 1] == '(') {
                 lastf.push_back(a[i]);
                 i++;
             }
         }
         if ((a[i] >= '0' && a[i] <= '9') || a[i] == '.')
             lastf.push_back(a[i]);
-        else
-        {
-            if (lastf[lastf.length() - 1] == '.')
-                lastf.pop_back();
-            if (lastf != "")
-                last.push(lastf);
+        else {
+            if (lastf[lastf.length() - 1] == '.') lastf.pop_back();
+            if (lastf != "") last.push(lastf);
             lastf = "";
-            if ((a[i] == '+' || a[i] == '-'))
-            {
-                while (1)
-                {
+            if ((a[i] == '+' || a[i] == '-')) {
+                while (1) {
                     string s(1, a[i]);
                     if (signs.empty() || signs.top() == '(')
                         signs.push(a[i]);
                     else if ((signs.top() == '*' || signs.top() == '/'))
                         signs.push(a[i]);
-                    else
-                    {
+                    else {
                         s.pop_back();
                         s += signs.top();
                         signs.pop();
@@ -50,15 +39,12 @@ void calcs::mid2last(string a)
                     break;
                 }
             }
-            if ((a[i] == '*' || a[i] == '/'))
-            {
-                while (1)
-                {
+            if ((a[i] == '*' || a[i] == '/')) {
+                while (1) {
                     string s(1, a[i]);
                     if (signs.empty() || signs.top() == '(')
                         signs.push(a[i]);
-                    else
-                    {
+                    else {
                         s.pop_back();
                         s += signs.top();
                         signs.pop();
@@ -68,17 +54,14 @@ void calcs::mid2last(string a)
                     break;
                 }
             }
-            if ((a[i] == '^'))
-            {
-                while (1)
-                {
+            if ((a[i] == '^')) {
+                while (1) {
                     string s(1, a[i]);
                     if (signs.empty() || signs.top() == '(')
                         signs.push(a[i]);
                     else if ((signs.top() == '+' || signs.top() == '-'))
                         signs.push(a[i]);
-                    else
-                    {
+                    else {
                         s.pop_back();
                         s += signs.top();
                         signs.pop();
@@ -88,14 +71,11 @@ void calcs::mid2last(string a)
                     break;
                 }
             }
-            if (a[i] == '(')
-            {
+            if (a[i] == '(') {
                 signs.push('(');
             }
-            if (a[i] == ')')
-            {
-                while (signs.top() != '(')
-                {
+            if (a[i] == ')') {
+                while (signs.top() != '(') {
                     string a(1, signs.top());
                     last.push(a);
                     signs.pop();
@@ -104,35 +84,28 @@ void calcs::mid2last(string a)
             }
         }
     }
-    if (!lastf.empty())
-        last.push(lastf);
-    while (!signs.empty())
-    {
+    if (!lastf.empty()) last.push(lastf);
+    while (!signs.empty()) {
         string s(1, signs.top());
         last.push(s);
         signs.pop();
     }
     return;
 }
-string calcs::calc()
-{
+string calcs::calc() {
     stack<string> ls1 = last;
     stack<string> ls2;
     stack<string> datas;
-    while (!ls1.empty())
-    {
+    while (!ls1.empty()) {
         ls2.push(ls1.top());
         ls1.pop();
     }
-    try
-    {
-        while (!ls2.empty())
-        {
+    try {
+        while (!ls2.empty()) {
             string x = ls2.top();
             if (x.front() >= '0' && x.front() <= '9' || x.length() > 1)
                 datas.push(x);
-            else
-            {
+            else {
                 string st1 = datas.top();
                 double s1, s2;
                 int w1, w2, wr, pos;
@@ -147,8 +120,7 @@ string calcs::calc()
                 ss.clear();
                 ss.str("");
                 datas.pop();
-                if (datas.empty())
-                    (throw -1);
+                if (datas.empty()) (throw -1);
                 string st2 = datas.top();
                 pos = st2.find('.');
                 if (pos != string::npos)
@@ -162,32 +134,26 @@ string calcs::calc()
                 datas.pop();
                 double res;
                 int n = 0;
-                if (x == "+")
-                {
+                if (x == "+") {
                     res = s1 + s2;
                     n = 1;
                     wr = max(w1, w2);
                 }
-                if (x == "-")
-                {
+                if (x == "-") {
                     res = s2 - s1;
                     n = 2;
                     wr = max(w1, w2);
                 }
-                if (x == "*")
-                {
+                if (x == "*") {
                     res = s1 * s2;
                     wr = w1 + w2;
                 }
-                if (x == "/")
-                {
-                    if (s1 == 0)
-                        throw -1;
+                if (x == "/") {
+                    if (s1 == 0) throw -1;
                     res = s2 / s1;
                     wr = s1 + s2 + 1;
                 }
-                if (x == "^")
-                {
+                if (x == "^") {
                     res = pow(s2, s1);
                     wr = -1;
                 }
@@ -197,50 +163,38 @@ string calcs::calc()
                     ss << fixed << setprecision(wr) << res;
                 string y = ss.str();
                 calcbase base1;
-                if (n == 1)
-                    y = base1.add(st1, st2, 0);
-                if (n == 2)
-                    y = base1.sub(st2, st1, 0);
+                if (n == 1) y = base1.add(st1, st2, 0);
+                if (n == 2) y = base1.sub(st2, st1, 0);
                 ss.clear();
                 ss.str("");
                 int pos2 = y.find('.');
-                if (pos2 != string::npos)
-                {
+                if (pos2 != string::npos) {
                     int i = y.length() - 1;
-                    while (y[i] == '0' && y[i] != '.')
-                        i--;
-                    if (y[i] != '0' && y[i] != '.')
-                        i++;
+                    while (y[i] == '0' && y[i] != '.') i--;
+                    if (y[i] != '0' && y[i] != '.') i++;
                     y = y.substr(0, i);
                 }
                 datas.push(y);
             }
             ls2.pop();
         }
-        if (datas.empty())
-            throw -1;
+        if (datas.empty()) throw -1;
         return datas.top();
-    }
-    catch (int e)
-    {
+    } catch (int e) {
         printf("equation not right,exit code:%d", -1);
     }
     return "E";
 }
-string calcs::rmbrt(string a)
-{
+string calcs::rmbrt(string a) {
     stack<kh> brts;
-    for (int i = 0; i < a.length(); i++)
-    {
-        if (a[i] == '(')
-        {
+    for (int i = 0; i < a.length(); i++) {
+        if (a[i] == '(') {
             kh k;
             k.c = a[i];
             k.pos = i;
             brts.push(k);
         }
-        if (a[i] == ')')
-        {
+        if (a[i] == ')') {
             kh k;
             k.c = a[i];
             k.pos = i;
@@ -252,31 +206,26 @@ string calcs::rmbrt(string a)
                 brts.push(k);
         }
     }
-    while (!brts.empty())
-    {
+    while (!brts.empty()) {
         a[brts.top().pos] = '&';
         brts.pop();
     }
     for (auto it = a.begin(); it != a.end(); it++)
-        if (*it == '&')
-        {
+        if (*it == '&') {
             a.erase(it);
             it--;
         }
     return a;
 }
-void calcs::print()
-{
+void calcs::print() {
     stack<string> ls = last;
     stack<string> ls2;
     string coutf;
-    while (!ls.empty())
-    {
+    while (!ls.empty()) {
         ls2.push(ls.top());
         ls.pop();
     }
-    while (!ls2.empty())
-    {
+    while (!ls2.empty()) {
         coutf += ls2.top();
         coutf += ' ';
         ls2.pop();

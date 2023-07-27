@@ -15,14 +15,14 @@ QT_END_NAMESPACE
 class calcer : public QMainWindow {
     Q_OBJECT
 
-   public:
+public:
     calcer(QWidget *parent = nullptr);
     ~calcer();
     bool ss;
 
-   protected:
+protected:
     void keyPressEvent(QKeyEvent *event);
-   public slots:
+public slots:
     void pushe();
     void pushpi();
     void pushnd();
@@ -48,7 +48,7 @@ class calcer : public QMainWindow {
     void pushl();
     void pushr();
     // double calc();
-   private:
+private:
     Ui::calcer *ui;
 };
 #endif  // CALCER_H

@@ -11,17 +11,17 @@
 #define ll long long
 using namespace std;
 class kh {
-   public:
+public:
     char c;
     int pos;
 };
 class calcs {
-   public:
+public:
     void mid2last(string a);
     string calc();
     void print();
     string rmbrt(string a);
 
-   private:
+private:
     stack<string> last;
 };

@@ -1,5 +1,4 @@
 #include "calcero.h"
-
 #include "calcbase.h"
 #define ll long long
 using namespace std;

@@ -10,7 +10,7 @@ int compare(string a, string b) {
     if (neg) {
         int com = compare(a.substr(0, a.find('.')), b.substr(0, b.find('.')));
         if (com == 1) return 1;
-        if (com == 0) return 2;
+        if (com == 0) return 0;
         if (com == 2)
             return compare(a.substr(a.find('.') + 1, a.length() - a.find('.')),
                            b.substr(b.find('.') + 1, b.length() - b.find('.')));
@@ -94,9 +94,9 @@ string calcbase::sub(string a, string b, bool xs) {
         k2 = 1;
         b.erase(b.begin());
     }
-    if (k1) return "-" + sub(a, b, 0);
-    if (k2) return add(a, b, 0);
     if (k1 && k2) return sub(b, a, 0);
+    if (k1) return "-" + add(a, b, 0);
+    if (k2) return add(a, b, 0);
     int fa = a.find('.');
     int fb = b.find('.');
     if (fa != string::npos) w1 = a.length() - fa - 1;

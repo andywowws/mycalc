@@ -24,7 +24,7 @@ int compare(string a, string b) {
     return 2;
 }
 string myformat(string a, int b, int c) {
-    if (b == 0) a.push_back('.');
+    if (c == 0) a.push_back('.');
     for (int i = 1; i <= b - c; i++) a.push_back('0');
     return a;
 }
@@ -133,5 +133,55 @@ string calcbase::sub(string a, string b, bool xs) {
         for (int i = 1; i <= a.length() - c.length(); i++)
             c.insert(c.begin(), '0');
     if (k1 && k2) c.insert(c.begin(), '-');
+    return c;
+}
+string calcbase::mcl(string a, string b) {
+    bool an = 0, bn = 0;
+    if (*a.begin() == '-') {
+        an = true;
+        a.erase(0, 1);
+    }
+    if (*b.begin() == '-') {
+        bn = true;
+        b.erase(0, 1);
+    }
+    int w1 = 0, w2 = 0;
+    int fa = a.find('.');
+    int fb = b.find('.');
+    if (fa != string::npos) {
+        w1 = a.length() - fa - 1;
+        a.erase(fa, 1);
+    }
+    if (fb != string::npos) {
+        w2 = b.length() - fb - 1;
+        b.erase(fb, 1);
+    }
+    int wr = w1 + w2;
+    reverse(a.begin(), a.end());
+    reverse(b.begin(), b.end());
+    memset(na, 0, sizeof(na));
+    memset(nb, 0, sizeof(nb));
+    memset(nc, 0, sizeof(nc));
+    for (int i = 0; i < a.size(); i++) na[i] = a[i] - '0';
+    for (int i = 0; i < b.size(); i++) nb[i] = b[i] - '0';
+    for (int i = 0; i < a.size(); i++) {
+        int carry = 0;
+        for (int j = 0; j < b.size(); j++) {
+            nc[i + j] += na[i] * nb[j] + carry;
+            carry = nc[i + j] / 10;
+            nc[i + j] %= 10;
+        }
+        nc[i + b.length()] += carry;
+    }
+    int index = a.size() + b.size();
+    while (nc[index] == 0 && index > 0) index--;
+    string c;
+    for (int i = 0; i <= index; i++) {
+        c.push_back(nc[i] + '0');
+    }
+    reverse(c.begin(), c.end());
+    int check = an + bn;
+    if (wr > 0) c.insert(c.size() - wr, 1, '.');
+    if (check == 1) c = '-' + c;
     return c;
 }

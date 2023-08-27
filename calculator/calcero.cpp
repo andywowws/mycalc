@@ -133,19 +133,15 @@ string calcs::calc() {
                 datas.pop();
                 double res;
                 int n = 0;
+                string y;
                 if (x == "+") {
-                    res = s1 + s2;
-                    n = 1;
-                    wr = max(w1, w2);
+                    y = calcbase::add(st1, st2, 0);
                 }
                 if (x == "-") {
-                    res = s2 - s1;
-                    n = 2;
-                    wr = max(w1, w2);
+                    y = calcbase::sub(st2, st1, 0);
                 }
                 if (x == "*") {
-                    res = s1 * s2;
-                    wr = w1 + w2;
+                    y = calcbase::mcl(st1, st2);
                 }
                 if (x == "/") {
                     if (s1 == 0) throw -1;
@@ -160,10 +156,7 @@ string calcs::calc() {
                     ss << fixed << setprecision(50) << res;
                 else
                     ss << fixed << setprecision(wr) << res;
-                string y = ss.str();
-                calcbase base1;
-                if (n == 1) y = base1.add(st1, st2, 0);
-                if (n == 2) y = base1.sub(st2, st1, 0);
+                if (x == "/") y = ss.str();
                 ss.clear();
                 ss.str("");
                 int pos2 = y.find('.');

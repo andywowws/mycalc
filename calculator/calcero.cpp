@@ -1,10 +1,13 @@
 #include "calcero.h"
 #include "calcbase.h"
+#include <map>
 #define ll long long
 using namespace std;
 void calcs::mid2last(string a) {
     stack<char> signs;
     string lastf;
+    map<char, int> t;
+    t['+'] = 1, t['-'] = 1, t['*'] = 2, t['/'] = 2, t['^'] = 3;
     for (int i = 0; i < a.length(); i++) {
         if (a[i] == '-') {
             if (i == 0) {
@@ -21,65 +24,25 @@ void calcs::mid2last(string a) {
             if (lastf[lastf.length() - 1] == '.') lastf.pop_back();
             if (lastf != "") last.push(lastf);
             lastf = "";
-            if ((a[i] == '+' || a[i] == '-')) {
-                while (1) {
-                    string s(1, a[i]);
-                    if (signs.empty() || signs.top() == '(')
-                        signs.push(a[i]);
-                    else if ((signs.top() == '*' || signs.top() == '/'))
-                        signs.push(a[i]);
-                    else {
-                        s.pop_back();
-                        s += signs.top();
-                        signs.pop();
-                        last.push(s);
-                        continue;
-                    }
-                    break;
-                }
-            }
-            if ((a[i] == '*' || a[i] == '/')) {
-                while (1) {
-                    string s(1, a[i]);
-                    if (signs.empty() || signs.top() == '(')
-                        signs.push(a[i]);
-                    else {
-                        s.pop_back();
-                        s += signs.top();
-                        signs.pop();
-                        last.push(s);
-                        continue;
-                    }
-                    break;
-                }
-            }
-            if ((a[i] == '^')) {
-                while (1) {
-                    string s(1, a[i]);
-                    if (signs.empty() || signs.top() == '(')
-                        signs.push(a[i]);
-                    else if ((signs.top() == '+' || signs.top() == '-'))
-                        signs.push(a[i]);
-                    else {
-                        s.pop_back();
-                        s += signs.top();
-                        signs.pop();
-                        last.push(s);
-                        continue;
-                    }
-                    break;
-                }
-            }
-            if (a[i] == '(') {
+            if (a[i] == '(')
                 signs.push('(');
-            }
-            if (a[i] == ')') {
-                while (signs.top() != '(') {
-                    string a(1, signs.top());
-                    last.push(a);
+            else if (a[i] == ')') {
+                while (!(signs.top() == '(' || signs.empty())) {
+                    last.push(string(1, signs.top()));
                     signs.pop();
                 }
-                signs.pop();
+                if (!signs.empty()) signs.pop();
+            } else {
+                if (signs.empty())
+                    signs.push(a[i]);
+                else {
+                    while (!(t.empty() || t[signs.top()] < t[a[i]] ||
+                             signs.top() == '(')) {
+                        last.push(string(1, signs.top()));
+                        signs.pop();
+                    }
+                    signs.push(a[i]);
+                }
             }
         }
     }
@@ -90,6 +53,21 @@ void calcs::mid2last(string a) {
         signs.pop();
     }
     return;
+}
+inline pair<double, int> read(string st1) {
+    stringstream ss;
+    int pos, w1;
+    double s1;
+    pos = st1.find('.');
+    if (pos != string::npos)
+        w1 = st1.length() - 1 - pos;
+    else
+        w1 = 0;
+    ss << fixed << setprecision(w1) << st1;
+    ss >> s1;
+    ss.clear();
+    ss.str("");
+    return make_pair(s1, w1);
 }
 string calcs::calc() {
     stack<string> ls1 = last;
@@ -108,31 +86,15 @@ string calcs::calc() {
                 string st1 = datas.top();
                 double s1, s2;
                 int w1, w2, wr, pos;
-                pos = st1.find('.');
-                if (pos != string::npos)
-                    w1 = st1.length() - 1 - pos;
-                else
-                    w1 = 0;
-                stringstream ss;
-                ss << fixed << setprecision(w1) << st1;
-                ss >> s1;
-                ss.clear();
-                ss.str("");
                 datas.pop();
+                pair<double, int> ret = read(st1);
+                s1 = ret.first, w1 = ret.second;
                 if (datas.empty()) (throw -1);
                 string st2 = datas.top();
-                pos = st2.find('.');
-                if (pos != string::npos)
-                    w2 = st2.length() - 1 - pos;
-                else
-                    w2 = 0;
-                ss << fixed << setprecision(w2) << st2;
-                ss >> s2;
-                ss.clear();
-                ss.str("");
+                ret = read(st2);
+                s2 = ret.first, w2 = ret.second;
                 datas.pop();
                 double res;
-                int n = 0;
                 string y;
                 if (x == "+") {
                     y = calcbase::add(st1, st2, 0);
@@ -152,11 +114,12 @@ string calcs::calc() {
                     res = pow(s2, s1);
                     wr = -1;
                 }
+                stringstream ss;
                 if (wr == -1)
                     ss << fixed << setprecision(50) << res;
                 else
                     ss << fixed << setprecision(wr) << res;
-                if (x == "/") y = ss.str();
+                if (x == "/" || x == "^") y = ss.str();
                 ss.clear();
                 ss.str("");
                 int pos2 = y.find('.');

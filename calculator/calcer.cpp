@@ -228,7 +228,7 @@ void calcer::pushjia() {
     QChar a = s[s.length() - 1];
     if (a == '.') s.erase(s.end() - 1);
     a = s[s.length() - 1];
-    if (a.isDigit()) s += '+';
+    if (a.isDigit() || a == ')' || a == '(') s += '+';
     ui->textEdit->setText(s);
     return;
 }
@@ -245,7 +245,7 @@ void calcer::pushjian() {
     /*QChar a=s[s.length()-1];
     if(a.isDigit())*/
     QChar a = s[s.length() - 1];
-    if (a.isDigit() || a == '(') s += '-';
+    if (a.isDigit() || a == ')' || a == '(') s += '-';
     ui->textEdit->setText(s);
     return;
 }
@@ -255,7 +255,7 @@ void calcer::pushcheng() {
     QChar a = s[s.length() - 1];
     if (a == '.') s.erase(s.end() - 1);
     a = s[s.length() - 1];
-    if (a.isDigit()) s += '*';
+    if (a.isDigit() || a == ')' || a == '(') s += '*';
     ui->textEdit->setText(s);
     return;
 }
@@ -268,7 +268,7 @@ void calcer::pushchu() {
         QChar a = s[s.length() - 1];
         if (a == '.') s.erase(s.end() - 1);
         a = s[s.length() - 1];
-        if (a.isDigit()) s += '/';
+        if (a.isDigit() || a == ')' || a == '(') s += '/';
     }
     ui->textEdit->setText(s);
     return;

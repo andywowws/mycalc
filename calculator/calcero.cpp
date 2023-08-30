@@ -36,8 +36,9 @@ void calcs::mid2last(string a) {
                 if (signs.empty())
                     signs.push(a[i]);
                 else {
-                    while (!(t.empty() || t[signs.top()] < t[a[i]] ||
-                             signs.top() == '(')) {
+                    while (!(t.empty())) {
+                        if (t[signs.top()] <= t[a[i]] || signs.top() == '(')
+                            break;
                         last.push(string(1, signs.top()));
                         signs.pop();
                     }

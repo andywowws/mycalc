@@ -29,7 +29,7 @@ string myformat(string a, int b, int c) {
     return a;
 }
 string calcbase::add(string a, string b, bool xs) {
-    int w1 = 0, w2 = 0, wr, sr, la = a.length(), lb = b.length();
+    int w1 = 0, w2 = 0, wr, sr;
     bool k1 = 0, k2 = 0;
     int fa = a.find('.');
     int fb = b.find('.');
@@ -58,6 +58,7 @@ string calcbase::add(string a, string b, bool xs) {
     memset(nc, 0, sizeof(nc));
     reverse(a.begin(), a.end());
     reverse(b.begin(), b.end());
+    int la = a.length(), lb = b.length();
     for (int i = 0; i < a.length(); i++) na[i] = a[i] - '0';
     for (int i = 0; i < b.length(); i++) nb[i] = b[i] - '0';
     for (int i = 0; i < max(la, lb); i++) {
